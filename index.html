@@ -136,12 +136,12 @@
             window.addEventListener("load", async () => {
                 // api key is straight up stolen from somewhere
                 {
-                    const lastfm = await fetch("http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=yourfriendoss&api_key=8d983789c771afaeb7412ac358d4bad0&format=json");
+                    const lastfm = await fetch("https://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=yourfriendoss&api_key=8d983789c771afaeb7412ac358d4bad0&format=json");
                     const json = await lastfm.json()
                     document.getElementById("plays").innerText = json.user.playcount
                 }
                 {
-                    const lastfm = await fetch("http://ws.audioscrobbler.com/2.0/?method=user.getRecentTracks&user=yourfriendoss&api_key=8d983789c771afaeb7412ac358d4bad0&format=json");
+                    const lastfm = await fetch("https://ws.audioscrobbler.com/2.0/?method=user.getRecentTracks&user=yourfriendoss&api_key=8d983789c771afaeb7412ac358d4bad0&format=json");
                     const json = await lastfm.json()
                     let track = json.recenttracks.track[0];
 
