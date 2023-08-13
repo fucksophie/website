@@ -1,8 +1,10 @@
-<!-- 🐝🐝 Apioformic little website 🐝🐝-->
+<!-- 🐝🐝 Apioformic little website 🐝🐝 -->
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>yourfriend's bad luck & fortune emporium</title>
+
         <meta name="title" content="yourfriend's bad luck & fortune emporium" />
         <meta name="description" content="yourfriend's very silly website, that got invaded by lots of different bees, and got beed up. very bee-y. yourfriend.lol" />
 
@@ -20,21 +22,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" /><link rel="icon" type="image/x-icon" href="/assets/images/normalsize.png">
 
         <script src="https://cdn.tailwindcss.com"></script>
+        
+        <!-- Entierly custom Markov script I wrote! Super tiny, 4 the web. -->
         <script src="markov.js"></script>
+
         <style>
             @font-face {
                 font-family: LondonOlympics2012;
                 src: url(assets/LONDO___.TTF);
             }  
-            @font-face {
-                font-family: RansomNote;
-                src: url(assets/rans____.ttf);
-            }  
             .lo2012 {
                 font-family: LondonOlympics2012;
-            }
-            .ransom {
-                font-family: RansomNote;
             }
             a {
                 font-style: italic;
@@ -50,22 +48,23 @@
                 <p class="lo2012 text-xl mb-2" id="apiohazard" >
                 </p>
                 <div class="bg-orange-300 rounded-md p-2">
-                    <h2 class="text-xl">about me</h2>
+                    <h2 class="text-xl">About me!</h2>
                     <p>
-                        I'm Latvian. I use any pronouns, and you can refer to me by "friend" or "yourfriend". :) I also love strawberries🍓, watermelons🍉, blueberries🫐 and pears🍐.
+                        I'm Latvian, I am 16 and genderfluid. I use any pronouns, and you can refer to me by "friend" or "yourfriend". :) I also love strawberries🍓, watermelons🍉, blueberries🫐 and pears🍐.
+                        I'm very very into listening to music. I have <span id="plays">??????</span> song plays (tracked via last.fm). I listen to mostly rap, pluggnb, cloud rap and other interesting gernes. My music taste is very very wide, from Destroy Lonely and Travis Scott, to, Pinkpanthress and American Football. I am currently <span id="song">not listening to anything.</span>
                     </p>
                     <p>
-                        May or may not have a slight obsession with 🐝's right now. Maybe 🍐 next? Maybe.
+                        May or may not have a slight obsession with 🐝's right now. Maybe pears next? Maybe.
                     </p>
                 </div>
                 <div class="bg-orange-300 rounded-md p-2 mt-2">
-                    <h2 class="text-xl">programming / development</h2>
+                    <h2 class="text-xl">Programming / development</h2>
                     <p>
                         I use TS/JS and C#. I do small webdev projects from time to time like this. I also write backend servers for many games. I generally am most comfromtable using Deno and C#. I also have no issue working with C or Python.
                     </p>
                 </div>
                 <div class="bg-orange-300 rounded-md p-2 mt-2">
-                    <h2 class="text-xl">gaming</h2>
+                    <h2 class="text-xl">Gaming</h2>
                     <p>
                         I currently mostly play <a href="https://sc3.io" class="text-underline">Switchcraft3 (minecraft modpack + server)</a>. I also play some indie games like Pizza Tower, Terraria, and some others. I also administrate the game <a href="https://mppclone.com">MultiPlayerPiano</a>, which is a quite active piano game with a chat that's horrible to moderate.
                     </p>
@@ -82,7 +81,7 @@
                     <a href="https://yourfriend.lol" rel="nooopener" target="_blank"><img src="https://yourfriend.lol/assets/images/beware_apioforms.png" width="88px" height="33px"></img></a> 
                 </div>
                 <div class="bg-orange-300 rounded-md p-2 mt-2">
-                    <h2 class="text-2xl">projects</h2>
+                    <h2 class="text-2xl">Projects</h2>
                     <p>
                         This list is missing 10+ contracted projects which I have created, which are private.
                     </p>
@@ -133,6 +132,27 @@
                 <div>
             </div>
         </div>
+        <script>
+            window.addEventListener("load", async () => {
+                // api key is straight up stolen from somewhere
+                {
+                    const lastfm = await fetch("http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=yourfriendoss&api_key=8d983789c771afaeb7412ac358d4bad0&format=json");
+                    const json = await lastfm.json()
+                    document.getElementById("plays").innerText = json.user.playcount
+                }
+                {
+                    const lastfm = await fetch("http://ws.audioscrobbler.com/2.0/?method=user.getRecentTracks&user=yourfriendoss&api_key=8d983789c771afaeb7412ac358d4bad0&format=json");
+                    const json = await lastfm.json()
+                    let track = json.recenttracks.track[0];
+
+                    if(track) {
+                        if(track["@attr"]?.["nowplaying"] == "true") {
+                            document.getElementById("song").innerText = `listening to ${track.artist["#text"]} - ${track.name} (on ${track.artist["#text"]}).`
+                        }
+                    }
+                }
+            })
+        </script>
         <script type="module">
             // These messages are from several apioform-related websites,
             // also from the switchcraft3 discord chat. I don't have
